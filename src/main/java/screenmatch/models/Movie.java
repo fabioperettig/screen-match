@@ -1,47 +1,17 @@
 package screenmatch.models;
 
-public class Movie {
+public class Movie extends Title {
 
-    private String name;
-    private int releaseYear;
-    private boolean onPlan;
-    private double rating;
-    private int totalVotes;
     private int runTime;
+    private String leadActor;
+    private String category;
 
+    //ctor
+    public Movie(String name, int releaseYear, String category) {
+        super(name, releaseYear);
+        this.category = category;
+    }
 
-
-    //getterSetter
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public int getReleaseYear() {
-        return releaseYear;
-    }
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-    public boolean isOnPlan() {
-        return onPlan;
-    }
-    public void setOnPlan(boolean onPlan) {
-        this.onPlan = onPlan;
-    }
-    public static double getRating() {
-        return rating;
-    }
-    public static void setRating(double rating) {
-        Movie.rating = rating;
-    }
-    public static int getTotalVotes() {
-        return totalVotes;
-    }
-    public static void setTotalVotes(int totalVotes) {
-        Movie.totalVotes = totalVotes;
-    }
     public int getRunTime() {
         return runTime;
     }
@@ -50,18 +20,25 @@ public class Movie {
     }
 
     /**
-     * Created to receive a user rate, increase it on {@link #rating}
-     * value, and increase the {@link #totalVotes} value;
+     * Converts the movie runtime (in minutes), following the standard breakdown:
+     * <ul>
+     *     <li> Hours are calculated by integer division: {@code minutes / 60} </li>
+     *     <li> Remaining minutes use the modulo operator: {@code minutes % 60} </li>
+     * </ul>
+     * <b>Example:</b><br>
+     * If {@code runTime = 142}, then:
+     * <pre>
+     * hours   = 142 / 60 = 2
+     * minutes = 142 % 60 = 22
+     * </pre>
+     * Output:
+     * {@code Runtime: 2h 22min}
      *
-     * @param rate determined for the user;
+     * This version *prints* the formatted runtime directly to the console.
      */
-    public void rate(double rate){
-        this.rating += rate;
-        this.totalVotes ++;
+    public void runTimeConvert() {
+        int hours = runTime / 60;
+        int minutes = runTime % 60;
+        System.out.printf("%nRuntime: %dh %dmin", hours, minutes);
     }
-
-    public void averageRating(){
-        System.out.printf("Rate: %.2f", this.rating/this.totalVotes);
-    }
-
 }

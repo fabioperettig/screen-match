@@ -1,19 +1,39 @@
 import screenmatch.models.Movie;
+import screenmatch.methods.ListService;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Movie m1 = new Movie("Toy Story", 1991, "Animation");
-        m1.rate(2d);
-        m1.rate(2.5);
-        m1.rate(2.3);
-        m1.rate(7.5);
-        m1.setRunTime(81);
+        ArrayList<Movie> favorites = new ArrayList<>();
+        ListService listService = new ListService();
 
-        m1.averageRating();
-        m1.runTimeConvert();
+        Movie harrypotter1 = new Movie("Harry Potter and the Sorcerer's Stone", 2001, "Fantasy");
+        Movie starwars4 = new Movie("Star Wars: A New Hope", 1977, "Science Fiction");
+        Movie titanic = new Movie("Titanic", 1997, "Romance");
+        Movie batmanDK = new Movie("The Dark Knight", 2008, "Action");
+        Movie inception = new Movie("Inception", 2010, "Thriller");
+        Movie parasite = new Movie("Parasite", 2019, "Drama");
+        Movie her = new Movie("Her", 2013,"Drama");
 
+        favorites.add(her);
+        favorites.add(harrypotter1);
+        favorites.add(titanic);
+        favorites.add(starwars4);
+
+        System.out.printf("%nFavorited movies: %d%n",favorites.size());
+
+        System.out.println(titanic.getId());
+        listService.checkID(favorites,120);
+        System.out.println("\n---------------");
+        listService.printMovieList(favorites);
+
+        System.out.println("\n---------------Catalog");
+        System.out.println(Movie.getMovieBacklogg().toString());
+
+        System.out.println(parasite);
     }
+
 
 }

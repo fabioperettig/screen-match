@@ -2,7 +2,7 @@ package screenmatch.models;
 
 public class Title {
 
-    private static int counterID = 100; //IDs starts at 101
+    private static int counterID = 100; //Reference for id starts at 101
     private final int id;
     private String name;
     private int releaseYear;
@@ -18,6 +18,10 @@ public class Title {
     }
 
     //getterSetter
+
+    public int getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }
@@ -64,4 +68,10 @@ public class Title {
     public void averageRating(){
         System.out.printf("%nRate: %.2f", this.rating/this.totalVotes);
     }
+
+    //It will be deprecated soon
+    public int getTotalTime(){
+        return 0;
+    }
+
 }

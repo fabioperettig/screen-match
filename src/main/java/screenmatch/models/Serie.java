@@ -3,7 +3,7 @@ package screenmatch.models;
 public class Serie extends Title{
 
     private int episodesPerSeason;
-    private int averageTime;
+    private int minutesEp;
     private int seasons;
     private boolean complete;
 
@@ -34,15 +34,20 @@ public class Serie extends Title{
         this.episodesPerSeason = episodesPerSeason;
     }
     public int getAverageTime() {
-        return averageTime;
+        return minutesEp;
     }
-    public void setAverageTime(int averageTime) {
-        this.averageTime = averageTime;
+    public void setAverageTime(int minutesEp) {
+        this.minutesEp = minutesEp;
     }
 
     public void totalEpisodes(){
         int totalEp = this.episodesPerSeason * this.seasons;
         System.out.printf("Total episodes: %d",totalEp);
+    }
+
+    @Override
+    public int getTotalTime() {
+        return this.getSeasons() * this.getEpisodesPerSeason() * this.getAverageTime();
     }
 
 }

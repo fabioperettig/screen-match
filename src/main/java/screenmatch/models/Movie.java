@@ -1,6 +1,9 @@
 package screenmatch.models;
+import java.util.ArrayList;
 
 public class Movie extends Title {
+
+    private static ArrayList<Movie> movieBacklogg = new ArrayList<>();
 
     private int runTime;
     private String leadActor;
@@ -10,8 +13,19 @@ public class Movie extends Title {
     public Movie(String name, int releaseYear, String category) {
         super(name, releaseYear);
         this.category = category;
+
+        movieBacklogg.add(this);
+
     }
 
+
+    //getterSetter
+    public static ArrayList<Movie> getMovieBacklogg() {
+        return movieBacklogg;
+    }
+    public String getCategory() {
+        return category;
+    }
     public int getRunTime() {
         return runTime;
     }
@@ -40,5 +54,18 @@ public class Movie extends Title {
         int hours = runTime / 60;
         int minutes = runTime % 60;
         System.out.printf("%nRuntime: %dh %dmin", hours, minutes);
+    }
+
+    @Override
+    public int getTotalTime(){
+      return this.runTime;
+    };
+
+    @Override
+    public String toString() {
+        return String.format(
+                "id: %d | %s | Year: %d| category: %s\n",
+                getId(), getName(), getReleaseYear(), getCategory()
+        );
     }
 }

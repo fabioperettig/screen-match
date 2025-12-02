@@ -1,6 +1,8 @@
 package screenmatch.models;
 
-public class Title {
+import java.util.Comparator;
+
+public class Title implements Comparable<Title> {
 
     private static int counterID = 100; //Reference for id starts at 101
     private final int id;
@@ -74,4 +76,13 @@ public class Title {
         return 0;
     }
 
+
+    @Override
+    public int compareTo(Title compare) {
+        return this.getName().compareTo(compare.getName());
+    }
+
+    public void printInfo() {
+        System.out.printf("id: %d | title: %s%n", id, name);
+    }
 }

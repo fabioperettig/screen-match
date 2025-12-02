@@ -4,10 +4,12 @@ import java.util.ArrayList;
 public class Movie extends Title {
 
     private static ArrayList<Movie> movieBacklogg = new ArrayList<>();
+    private static ArrayList<Movie> moviewatched = new ArrayList<>();
 
     private int runTime;
     private String leadActor;
     private String category;
+    private boolean watched;
 
     //ctor
     public Movie(String name, int releaseYear, String category) {
@@ -20,9 +22,19 @@ public class Movie extends Title {
 
 
     //getterSetter
+    public static ArrayList<Movie> getMoviewatched() {
+        return moviewatched;
+    }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
+        moviewatched.add(this);
+    }
+
     public static ArrayList<Movie> getMovieBacklogg() {
         return movieBacklogg;
     }
+
     public String getCategory() {
         return category;
     }
@@ -61,6 +73,11 @@ public class Movie extends Title {
       return this.runTime;
     };
 
+    /**
+     * Method Overrrided
+     * @return a string format with relevants Movie atributes;
+     * @Deprecated for the overrided method "prinInfo" from Title Class
+     */
     @Override
     public String toString() {
         return String.format(
@@ -68,4 +85,15 @@ public class Movie extends Title {
                 getId(), getName(), getReleaseYear(), getCategory()
         );
     }
+
+    @Override
+    public void printInfo(){
+        System.out.printf("id: %d | %s | Year: %d| category: %s%n",
+                getId(), getName(), getReleaseYear(), getCategory());
+    }
+
+    public int orderMovie(Movie compare){
+        return this.getName().compareTo(compare.getName());
+    }
+
 }

@@ -1,10 +1,12 @@
 package screenmatch.models;
+import screenmatch.methods.Utility;
 import java.util.ArrayList;
 
 public class Movie extends Title {
 
     private static ArrayList<Movie> movieBacklogg = new ArrayList<>();
     private static ArrayList<Movie> moviewatched = new ArrayList<>();
+    Utility utility = new Utility();
 
     private int runTime;
     private String leadActor;
@@ -12,9 +14,10 @@ public class Movie extends Title {
     private boolean watched;
 
     //ctor
-    public Movie(String name, int releaseYear, String category) {
+    public Movie(String name, int releaseYear, String category, int runTime) {
         super(name, releaseYear);
         this.category = category;
+        this.runTime = runTime;
 
         movieBacklogg.add(this);
 
@@ -45,27 +48,10 @@ public class Movie extends Title {
         this.runTime = runTime;
     }
 
-    /**
-     * Converts the movie runtime (in minutes), following the standard breakdown:
-     * <ul>
-     *     <li> Hours are calculated by integer division: {@code minutes / 60} </li>
-     *     <li> Remaining minutes use the modulo operator: {@code minutes % 60} </li>
-     * </ul>
-     * <b>Example:</b><br>
-     * If {@code runTime = 142}, then:
-     * <pre>
-     * hours   = 142 / 60 = 2
-     * minutes = 142 % 60 = 22
-     * </pre>
-     * Output:
-     * {@code Runtime: 2h 22min}
-     *
-     * This version *prints* the formatted runtime directly to the console.
-     */
-    public void runTimeConvert() {
-        int hours = runTime / 60;
-        int minutes = runTime % 60;
-        System.out.printf("%nRuntime: %dh %dmin", hours, minutes);
+
+    public void movieTime() {
+        System.out.printf("%nTime duration of %s: ", this.getName());
+        utility.runTime(this.getRunTime());
     }
 
     @Override

@@ -11,6 +11,7 @@ public class Title implements Comparable<Title> {
     private boolean onPlan;
     private double rating;
     private int totalVotes;
+    private int minutes;
 
     //ctor
     public Title(String name, int releaseYear) {

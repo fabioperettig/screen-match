@@ -23,7 +23,7 @@ public class Main {
         Movie batmanDK = new Movie("The Dark Knight", 2008, "Action", 153);
         Movie inception = new Movie("Inception", 2010, "Thriller", 148);
         Movie parasite = new Movie("Parasite", 2019, "Drama", 132);
-        Movie her = new Movie("Her", 2013,"Drama", 126);
+        Movie her = new Movie("Her", 2013,"Drama", 26);
 
 
         parasite.movieTime();

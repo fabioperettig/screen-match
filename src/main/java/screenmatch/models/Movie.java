@@ -73,9 +73,9 @@ public class Movie extends Title {
     }
 
     @Override
-    public void printInfo(){
-        System.out.printf("id: %d | %s | Year: %d| category: %s%n",
-                getId(), getName(), getReleaseYear(), getCategory());
+    public String printInfo(){
+        return String.format("id: %d | %s | Year: %d| category: %s%n",
+        getId(), getName(), getReleaseYear(), getCategory());
     }
 
     public int orderMovie(Movie compare){

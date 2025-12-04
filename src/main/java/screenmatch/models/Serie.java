@@ -50,9 +50,10 @@ public class Serie extends Title{
         return this.getSeasons() * this.getEpisodesPerSeason() * this.getAverageTime();
     }
 
+    /*
     @Override
     public void printInfo() {
         System.out.printf("id: %d | %s | Year: %d| seasons: %s%n",
                 getId(), getName(), getReleaseYear(), getSeasons());
-    }
+    }*/
 }

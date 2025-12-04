@@ -1,12 +1,18 @@
 package screenmatch.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Comparator;
 
 public class Title implements Comparable<Title> {
 
     private static int counterID = 100; //Reference for id starts at 101
     private final int id;
+
+    @SerializedName("Title")
     private String name;
+
+    @SerializedName("Year")
     private int releaseYear;
     private boolean onPlan;
     private double rating;
@@ -83,7 +89,12 @@ public class Title implements Comparable<Title> {
         return this.getName().compareTo(compare.getName());
     }
 
+    public String printInfo(){
+        return String.format("id: %d | title: %s%n", id, name);
+    }
+
+    /*
     public void printInfo() {
         System.out.printf("id: %d | title: %s%n", id, name);
-    }
+    }*/
 }

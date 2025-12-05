@@ -17,6 +17,7 @@ public class Title implements Comparable<Title> {
     private boolean onPlan;
     private double rating;
     private int totalVotes;
+    //@SerializedName("Runtime")
     private int minutes;
 
     //ctor
@@ -24,10 +25,15 @@ public class Title implements Comparable<Title> {
         this.id = counterID ++;
         this.name = name;
         this.releaseYear = releaseYear;
+        this.minutes = Integer.valueOf(minutes);
     }
 
     //getterSetter
 
+
+    public int getMinutes() {
+        return minutes;
+    }
     public int getId() {
         return id;
     }

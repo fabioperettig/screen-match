@@ -1,4 +1,5 @@
 package screenmatch.models;
+import com.google.gson.annotations.SerializedName;
 import screenmatch.methods.Utility;
 import java.util.ArrayList;
 
@@ -10,6 +11,8 @@ public class Movie extends Title {
 
     private int runTime;
     private String leadActor;
+
+    @SerializedName("Genre")
     private String category;
     private boolean watched;
 
@@ -17,10 +20,8 @@ public class Movie extends Title {
     public Movie(String name, int releaseYear, String category, int runTime) {
         super(name, releaseYear);
         this.category = category;
-        this.runTime = runTime;
-
+        //this.runTime = runTime;
         movieBacklogg.add(this);
-
     }
 
 
@@ -59,23 +60,10 @@ public class Movie extends Title {
       return this.runTime;
     };
 
-    /**
-     * Method Overrrided
-     * @return a string format with relevants Movie atributes;
-     * @Deprecated for the overrided method "prinInfo" from Title Class
-     */
-    @Override
-    public String toString() {
-        return String.format(
-                "id: %d | %s | Year: %d| category: %s\n",
-                getId(), getName(), getReleaseYear(), getCategory()
-        );
-    }
-
     @Override
     public String printInfo(){
-        return String.format("id: %d | %s | Year: %d| category: %s%n",
-        getId(), getName(), getReleaseYear(), getCategory());
+        return String.format("id: %d | %s | Year: %d| category: %s | duration: %d%n",
+        getId(), getName(), getReleaseYear(), getCategory(), getMinutes());
     }
 
     public int orderMovie(Movie compare){

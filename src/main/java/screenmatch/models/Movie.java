@@ -1,73 +1,81 @@
 package screenmatch.models;
-import com.google.gson.annotations.SerializedName;
-import screenmatch.methods.Utility;
-import java.util.ArrayList;
+
+import screenmatch.services.record.MovieData;
 
 public class Movie extends Title {
 
-    private static ArrayList<Movie> movieBacklogg = new ArrayList<>();
-    private static ArrayList<Movie> moviewatched = new ArrayList<>();
-    Utility utility = new Utility();
-
     private int runTime;
     private String leadActor;
-
-    @SerializedName("Genre")
+    private String director;
     private String category;
     private boolean watched;
 
-    //ctor
-    public Movie(String name, int releaseYear, String category, int runTime) {
+
+    private Movie(String name, int releaseYear) {
         super(name, releaseYear);
-        this.category = category;
-        //this.runTime = runTime;
-        movieBacklogg.add(this);
+        watched = false;
     }
 
-
-    //getterSetter
-    public static ArrayList<Movie> getMoviewatched() {
-        return moviewatched;
+    public int getRunTime() {
+        return runTime;
     }
 
-    public void setWatched(boolean watched) {
-        this.watched = watched;
-        moviewatched.add(this);
+    public void setRunTime(int runTime) {
+        this.runTime = runTime;
     }
 
-    public static ArrayList<Movie> getMovieBacklogg() {
-        return movieBacklogg;
+    public String getLeadActor() {
+        return leadActor;
+    }
+
+    public void setLeadActor(String leadActor) {
+        this.leadActor = leadActor;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     public String getCategory() {
         return category;
     }
-    public int getRunTime() {
-        return runTime;
-    }
-    public void setRunTime(int runTime) {
-        this.runTime = runTime;
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-
-    public void movieTime() {
-        System.out.printf("%nTime duration of %s: ", this.getName());
-        utility.runTime(this.getRunTime());
+    public boolean isWatched() {
+        return watched;
     }
+
+    public void setWatched(boolean watched) {
+        this.watched = watched;
+    }
+
 
     @Override
-    public int getTotalTime(){
-      return this.runTime;
-    };
-
-    @Override
-    public String printInfo(){
-        return String.format("id: %d | %s | Year: %d| category: %s | duration: %d%n",
-        getId(), getName(), getReleaseYear(), getCategory(), getMinutes());
+    public String toString() {
+        return "O FILME É: " + getName()
+                + " | Com ano de lançamento: "
+                + getReleaseYear() +
+                " | Assistido: " + isWatched();
     }
 
-    public int orderMovie(Movie compare){
-        return this.getName().compareTo(compare.getName());
+    public static Movie create(String name, int releaseYear){
+        return new Movie(name, releaseYear);
+    }
+
+    public static Movie fromData(MovieData data){
+        Movie movie = create(data.title(), data.year());
+
+        movie.setDirector(data.director());
+        movie.setCategory(data.genre());
+
+        return movie;
     }
 
 }

@@ -1,9 +1,11 @@
 package screenmatch;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
-import screenmatch.models.Movie;
-import screenmatch.models.Title;
-import screenmatch.methods.Utility;
+import com.google.gson.GsonBuilder;
+import io.github.cdimascio.dotenv.Dotenv;
+import screenmatch.dao.Utility;
+import screenmatch.records.OMDBTitle;
 
 import java.io.IOException;
 import java.net.URI;
@@ -20,7 +22,7 @@ public class TitleRequest {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         //instances
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         Scanner scanner = new Scanner(System.in);
         Utility utility = new Utility();
 
@@ -29,7 +31,8 @@ public class TitleRequest {
 
 
         //API reader
-        String apiKey = System.getenv("OMDB_API_KEY");
+        Dotenv dotenv = Dotenv.load();
+        String apiKey = dotenv.get("OMDB_API_KEY");
         if (apiKey == null || apiKey.isBlank()){
             throw new IllegalStateException("MISSING ENVIRONMENT USER API");
         }
@@ -42,8 +45,11 @@ public class TitleRequest {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         System.out.println(response.body());
+        System.out.println("\n------------------------\n");
 
-        Movie title = gson.fromJson(response.body(), Movie.class);
+        OMDBTitle title = gson.fromJson(response.body(), OMDBTitle.class);
+
+        System.out.println(title);
     }
 
 }

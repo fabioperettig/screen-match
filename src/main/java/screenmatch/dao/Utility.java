@@ -1,7 +1,5 @@
-package screenmatch.methods;
-import screenmatch.models.Movie;
-import screenmatch.models.Serie;
-import screenmatch.models.Title;
+package screenmatch.dao;
+
 
 public class Utility {
 

@@ -46,18 +46,20 @@ public class TestDAO {
         );
 
         MovieData avatar = new MovieData(
-                "Harry Potter",
-                2001,
-                "152 min",
-                "Adventure, Family, Fantasy",
-                "Chris Columbus"
+                "Avatar",
+                2009,
+                "162 min",
+                "Action, Adventure, Fantasy",
+                "James Cameron"
         );
 
-        Movie movie = dao.newMovie(hp);
+        Movie movieHP = dao.newMovie(hp);
+        Movie movieAV = dao.newMovie(avatar);
 
+        dao.setWatched(movieHP);
 
-        MovieDAO.getMovieBacklogg().forEach(movie ->
-                System.out.println(movie.toString()));
+        MovieDAO.getMovieBacklogg().forEach(movie -> System.out.println(movie.toString()));
+        Assertions.assertEquals(MovieDAO.getMovieBacklogg().get(1),movieAV);
     }
 
 

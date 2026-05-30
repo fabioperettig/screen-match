@@ -23,7 +23,7 @@ public class TestRequest {
     }
 
     @Test
-    public void testResquet() throws IOException, InterruptedException {
+    public void testOMDBResquet() throws IOException, InterruptedException {
 
         String titleRequest = "Toy Story";
         MovieData result = omdBservice.searchByTitle(titleRequest);
@@ -34,19 +34,12 @@ public class TestRequest {
     }
 
     @Test
-    public void TMResquet() throws IOException, InterruptedException {
+    public void testTMDBResquet() throws IOException, InterruptedException {
 
         String titleRequest = "Matrix";
         MovieData result = tmdBservice.searchByTitle(titleRequest);
         dao.newMovie(result);
 
-
-//        Assertions.assertNotNull(result.title());
-//        Assertions.assertEquals(titleRequest, MovieDAO.getMovieBacklogg().get(0).getName());
+        Assertions.assertNotNull(result.title());
     }
-
-
-
-
-
 }

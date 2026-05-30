@@ -1,14 +1,9 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import screenmatch.controller.MovieController;
 import screenmatch.dao.MovieDAO;
 import screenmatch.models.Movie;
-import screenmatch.services.MovieApiServiceInterface;
-import screenmatch.services.OMDBservice;
 import screenmatch.services.record.MovieData;
-
-import java.io.IOException;
 
 
 public class TestDAO {

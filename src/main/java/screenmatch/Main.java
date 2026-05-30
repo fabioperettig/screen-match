@@ -1,7 +1,6 @@
 package screenmatch;
 
 import screenmatch.services.MovieApiServiceInterface;
-import screenmatch.services.OMDBservice;
 import screenmatch.dao.MovieDAO;
 
 import screenmatch.controller.MovieController;
@@ -12,6 +11,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
+        /// Swap implementation: Dependency Injection
+        /// MovieApiServiceInterface service = new OMDBservice();
         MovieApiServiceInterface service = new TMDBservice();
         MovieDAO dao = new MovieDAO();
 

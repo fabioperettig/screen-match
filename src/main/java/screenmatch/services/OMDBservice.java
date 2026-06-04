@@ -23,7 +23,7 @@ public class OMDBservice implements MovieApiServiceInterface {
         if (apiKey == null || apiKey.isBlank()){
             throw new IllegalStateException("MISSING ENVIRONMENT USER API");
         }
-
+        
         String movieTitle = title.replace(" ", "+");
         String url = "http://www.omdbapi.com/?t="+movieTitle+"&apikey="+apiKey;
 
